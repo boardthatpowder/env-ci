@@ -9,12 +9,14 @@ module.exports = {
 		return isCi;
 	},
 	configuration({env, cwd}) {
+		const branch = env.BRANCH ? env.BRANCH : branch({env, cwd});
 		const config = {
 			name: 'AWS CodeBuild',
 			service: 'codebuild',
 			commit: head({env, cwd}),
 			build: env.CODEBUILD_BUILD_ID,
-			branch: env.BRANCH ? env.BRANCH : branch({env, cwd}),
+			branch,
+			ciBranch: branch,
 			buildUrl: `https://console.aws.amazon.com/codebuild/home?region=${env.AWS_REGION}#/builds/${
 				env.CODEBUILD_BUILD_ID
 			}/view/new`,
