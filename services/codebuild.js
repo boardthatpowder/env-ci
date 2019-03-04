@@ -6,6 +6,7 @@ module.exports = {
 	detect({env}) {
 		const isCi = Boolean(env.CODEBUILD_BUILD_ID);
 		console.log(`***** isCodeBuild: ${isCi}`);
+		return isCi;
 	},
 	configuration({env, cwd}) {
 		const config = {
@@ -21,5 +22,6 @@ module.exports = {
 			root: env.PWD,
 		};
 		console.log(`***** CodeBuild config: ${JSON.stringify(config)}`);
+		return config;
 	},
 };
