@@ -7,7 +7,7 @@ module.exports = {
 		return Boolean(env.CODEBUILD_BUILD_ID);
 	},
 	configuration({env, cwd}) {
-		return {
+		const config = {
 			name: 'AWS CodeBuild',
 			service: 'codebuild',
 			commit: head({env, cwd}),
@@ -19,5 +19,6 @@ module.exports = {
 			}/view/new`,
 			root: env.PWD,
 		};
+		console.log(`CodeBuild config: ${JSON.stringify(config)}`);
 	},
 };
