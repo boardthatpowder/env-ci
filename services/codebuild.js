@@ -4,7 +4,8 @@ const {head, branch} = require('../lib/git');
 
 module.exports = {
 	detect({env}) {
-		return Boolean(env.CODEBUILD_BUILD_ID);
+		const isCi = Boolean(env.CODEBUILD_BUILD_ID);
+		console.log(`***** isCodeBuild: ${isCi}`);
 	},
 	configuration({env, cwd}) {
 		const config = {
@@ -19,6 +20,6 @@ module.exports = {
 			}/view/new`,
 			root: env.PWD,
 		};
-		console.log(`CodeBuild config: ${JSON.stringify(config)}`);
+		console.log(`***** CodeBuild config: ${JSON.stringify(config)}`);
 	},
 };
