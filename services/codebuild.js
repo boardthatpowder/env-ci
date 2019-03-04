@@ -13,6 +13,7 @@ module.exports = {
 			commit: head({env, cwd}),
 			build: env.CODEBUILD_BUILD_ID,
 			branch: branch({env, cwd}),
+			ciBranch: branch({env, cwd}),
 			buildUrl: `https://console.aws.amazon.com/codebuild/home?region=${env.AWS_REGION}#/builds/${
 				env.CODEBUILD_BUILD_ID
 			}/view/new`,
