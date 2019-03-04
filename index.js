@@ -30,10 +30,14 @@ const services = {
 
 module.exports = ({env = process.env, cwd = process.cwd()} = {}) => {
 	for (const name of Object.keys(services)) {
+		console.log(`***** testing for ci ${name}`);
 		if (services[name].detect({env, cwd})) {
+			console.log(`***** found ci ${name}`);
 			return Object.assign({isCi: true}, services[name].configuration({env, cwd}));
 		}
 	}
 
+	
+	console.log(`***** found no ci`);
 	return Object.assign({isCi: Boolean(env.CI)}, git.configuration({env, cwd}));
 };
